@@ -15,7 +15,7 @@ const reducer = (state, action) => {
       return action.data;
     }
     case "CREATE": {
-      newState = [...action.data, ...state];
+      newState = [action.data, ...state];
       break;
     }
     case "REMOVE": {
@@ -112,7 +112,7 @@ function App() {
 
   return (
     <DiaryStateContext.Provider value={data}>
-      <DiaryDispatchContext.Provider value={(onCreate, onEdit, onRemove)}>
+      <DiaryDispatchContext.Provider value={{ onCreate, onEdit, onRemove }}>
         <BrowserRouter>
           <div className="App">
             <Routes>
@@ -123,7 +123,7 @@ function App() {
               <Route path="/new" element={<New />} />
 
               {/* Edit: 일기 수정 로직 */}
-              <Route path="/edit" element={<Edit />} />
+              <Route path="/edit/:id" element={<Edit />} />
 
               {/* Diary: 일기 하나의 데이터 */}
               <Route path="/diary/:id" element={<Diary />} />
